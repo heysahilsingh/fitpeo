@@ -1,17 +1,16 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "./context/providers"
 import { PageCustomers, PageOverview, PageHelp, PageIncome, PageProduct, PagePromote } from "./pages/pages"
-import { routePaths } from "./config.ts";
+import { routePaths } from "./config.tsx";
 import PageSidebar from "./components/pageSidebar/PageSidebar.tsx";
 
 
 const App = () => {
     return (
         <UserContextProvider>
-            <div className="flex w-full h-screen overflow-hidden">
-                <div className="page-content grow w-2/4 bg-red-500"><Outlet /></div>
-
+            <div className="flex w-full h-screen">
                 <PageSidebar />
+                <div className="page-content grow w-2/4"><Outlet /></div>
             </div>
         </UserContextProvider>
     )

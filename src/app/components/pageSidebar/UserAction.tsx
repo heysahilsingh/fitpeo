@@ -2,6 +2,7 @@ import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react"
 import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../context/contexts";
 import { useClickOutside } from "../../hooks/hooks";
+import { IconMoonStars } from "@tabler/icons-react";
 
 
 const UserAction = () => {
@@ -27,6 +28,12 @@ const UserAction = () => {
         setShowUserSetting(false)
     };
 
+    // Handle darkMode
+    const handleDarkMode = () => {
+        const htmlEl = document.documentElement;
+        htmlEl.classList.contains('dark') ? htmlEl.classList.remove('dark') : htmlEl.classList.add('dark')
+    }
+
     return (
         <div className="user relative">
             <div ref={userWrapperRef} className="wrapper group transition flex gap-3 items-center rounded-lg py-2 px-3 bg-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.2)] cursor-pointer leading-none" onClick={() => setShowUserSetting(prev => !prev)}>
@@ -44,6 +51,14 @@ const UserAction = () => {
             {showUserSetting && (
                 <div ref={userSettingRef} className="user-actions absolute top-0 -translate-y-[110%] right-0 bg-[#363666] shadow-xl z-2 rounded-lg pl-4 pr-5 py-3">
                     <div className="wrapper flex flex-col gap-3 relative">
+                        <div className="flex items-center gap-1.5 cursor-pointer opacity-70 hover:opacity-100">
+                            <label htmlFor="darkMode" className="cursor-pointer flex items-center gap-1.5">
+                                <IconMoonStars stroke={1.5} size={22} />
+                                Dark Mode
+                            </label>
+                            <input onChange={handleDarkMode} type="checkbox" id="darkMode" className="dark-toggle" />
+                        </div>
+                        <hr className='bg-white opacity-20 h-[1px] border-none' />
                         <div className="flex items-center gap-1.5 cursor-pointer opacity-70 hover:opacity-100">
                             <IconSettings stroke={1.5} size={22} />Settings
                         </div>

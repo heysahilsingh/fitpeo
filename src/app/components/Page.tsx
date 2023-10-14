@@ -7,7 +7,7 @@ type PageProps = {
 
 const Page = (props: PageProps) => {
     return (
-        <div className={`${props.name || ''} page p-4 lg:p-4`}>
+        <div className={`${props.name || ''} page w-full h-full mt-[61px] lg:mt-0 p-4 lg:px-10 lg:py-6`}>
             {props.children}
         </div>
     )

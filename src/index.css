@@ -75,64 +75,24 @@ html.dark .shimmer-bg {
 
 
 /* INPUT TYPE RADIO AND CHECKBOX */
-input[type="checkbox"] {
-  accent-color: #fc8019;
-  width: 15px;
-  height: 15px;
-}
-
-input[type="radio"] {
-  border: 2px solid white;
-  box-shadow: 0 0 0 1px #02060c99;
-  appearance: none;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  background-color: transparent;
-  transition: all ease-in 0.2s;
-  width: 15px;
-  height: 15px;
-}
-
-html.dark input[type="radio"] {
-  border: 2px solid rgb(24, 24, 27);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
-
-}
-
-html.dark input[type="radio"]:checked {
-  box-shadow: 0 0 0 1px #fc8019;
-}
-
-input[type="radio"]:checked {
-  background-color: #fc8019;
-  box-shadow: 0 0 0 1px #fc8019;
-}
-
-.sa-container {
-  max-width: 1400px;
-  margin: auto;
-}
-
-.sa-dark-toggle:checked {
+.dark-toggle:checked {
   background-color: #fc8019 !important;
 }
 
-.sa-dark-toggle:checked:after {
-  transform: translate(27px, -50%) !important;
+.dark-toggle:checked:after {
+  /* transform: translate(100%, -50%) !important; */
+  right: 3px;
+  left: auto;
   background-color: white !important;
 }
 
-.sa-dark-toggle {
-  height: 24px !important;
-  width: 52px !important;
+.dark-toggle {
+  height: 22px !important;
+  width: 40px !important;
   border-radius: 15px !important;
   display: inline-block !important;
-  position: fixed !important;
-  bottom: 15px;
-  left: 15px;
-  z-index: 99999999999;
-  background: rgb(61, 61, 61) !important;
+  position: relative;
+  background: rgb(255, 255, 255) !important;
   transition: all 0.2s !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
@@ -140,14 +100,14 @@ input[type="radio"]:checked {
   outline: none !important;
 }
 
-.sa-dark-toggle:after {
+.dark-toggle:after {
   content: '';
   position: absolute !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  left: 3px !important;
-  width: 19px !important;
-  height: 19px !important;
+  left: 3px;
+  width: 18px !important;
+  height: 18px !important;
   border-radius: 50% !important;
   background: rgb(197, 197, 197) !important;
   box-shadow: var(--box-shadow) !important;
