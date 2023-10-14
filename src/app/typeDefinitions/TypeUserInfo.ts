@@ -5,6 +5,7 @@ export type TypeUserInfo = {
     info: {
         name: string,
         profile_img: string,
-        role: string
+        role: string,
+        currency: string
     }
 }

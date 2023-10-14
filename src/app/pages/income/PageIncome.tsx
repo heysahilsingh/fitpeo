@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Page from "../../components/Page";
-import PageShimmer from "../../components/PageShimmer";
+import {Page, PageShimmer} from "../../components/components";
 
 const PageIncome = () => {
     const [showShimmer, setShowShimmer] = useState(true);

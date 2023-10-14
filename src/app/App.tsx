@@ -2,7 +2,7 @@ import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "./context/providers"
 import { PageCustomers, PageOverview, PageHelp, PageIncome, PageProduct, PagePromote } from "./pages/pages"
 import { routePaths } from "./config.tsx";
-import PageSidebar from "./components/pageSidebar/PageSidebar.tsx";
+import {PageSidebar} from "./components/components";
 
 
 const App = () => {

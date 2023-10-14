@@ -74,7 +74,12 @@ html.dark .shimmer-bg {
 }
 
 
-/* INPUT TYPE RADIO AND CHECKBOX */
+/* INPUT*/
+input {
+  appearance: none;
+}
+
+
 .dark-toggle:checked {
   background-color: #fc8019 !important;
 }

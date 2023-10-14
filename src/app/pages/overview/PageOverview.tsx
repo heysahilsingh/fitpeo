@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import Page from "../../components/Page";
-import PageShimmer from "../../components/PageShimmer";
-import ProductSellTable from "../../components/ProductSellTable";
 import { UserContext } from "../../context/contexts";
-import SearchInput from "../../components/SearchInput";
+import { Page, PageShimmer, ProductSellTable, ReportSummaryCard, SearchInput } from "../../components/components";
+import { IconBuildingStore, IconClipboardList, IconCoins, IconWallet } from "@tabler/icons-react";
 
 const PageOverview = () => {
     const [showShimmer, setShowShimmer] = useState(true);
@@ -23,12 +21,39 @@ const PageOverview = () => {
 
                 {!showShimmer && (
                     <div className="flex flex-col gap-8 w-full">
+                        {/* Greeting and  Search */}
                         <div className="search-page flex gap-4 items-center justify-between">
                             <p>Hello, {userInfo.info.name} 👋🏻</p>
-                            <SearchInput />
+                            <SearchInput showSearchIcon={true} className="w-[250px]" />
                         </div>
 
-                        <h1 className="font-bold text-[60px] uppercase">Overview Page</h1>
+                        {/* report summary */}
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+                            <ReportSummaryCard
+                                name="earning"
+                                icon={IconCoins}
+                                iconColor="text-green-600"
+                            />
+
+                            <ReportSummaryCard
+                                name="orders"
+                                icon={IconClipboardList}
+                                iconColor="text-purple-600"
+                            />
+
+                            <ReportSummaryCard
+                                name="balance"
+                                icon={IconWallet}
+                                iconColor="text-blue-600"
+                            />
+
+                            <ReportSummaryCard
+                                name="total sales"
+                                icon={IconBuildingStore}
+                                iconColor="text-rose-500"
+                            />
+                        </div>
+
                         <ProductSellTable />
                     </div>
                 )}

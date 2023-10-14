@@ -8,7 +8,7 @@ type TypeUserContext = {
 }
 
 // Create the initial context
-const getUserInfo = localStorage.getItem("userInfo");
+const getUserInfo = localStorage.getItem("userInfoo");
 const initialUserInfo: TypeUserInfo = getUserInfo ? JSON.parse(getUserInfo) : (
     {
         auth: {
@@ -17,7 +17,8 @@ const initialUserInfo: TypeUserInfo = getUserInfo ? JSON.parse(getUserInfo) : (
         info: {
             name: "Guest",
             profile_img: "https://xsgames.co/randomusers/assets/avatars/male/76.jpg",
-            role: "Project manager"
+            role: "Project manager",
+            currency: "$"
         }
     }
 );
