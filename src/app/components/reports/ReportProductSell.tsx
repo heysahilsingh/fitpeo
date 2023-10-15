@@ -2,7 +2,7 @@ import { IconChevronDown } from "@tabler/icons-react"
 import { NetwrokError, ProductsHrList, ProductsHrListShimmer, SearchInput } from "../components"
 import { useState, Fragment } from 'react';
 import { useRef } from 'react';
-import useClickOutside from "../../hooks/useClickOutside";
+import { useClickOutside } from "../../hooks/hooks";
 import { useEffect } from 'react';
 import { TypeProductInfo } from "../../typeDefinitions/TypeProductInfo";
 
