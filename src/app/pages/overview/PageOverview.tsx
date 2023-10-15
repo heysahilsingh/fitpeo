@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/contexts";
-import { Page, PageShimmer, ProductSellTable, ReportSummaryCard, SearchInput } from "../../components/components";
+import { Page, PageShimmer, ReportProductSell, ReportSummaryCard, SearchInput } from "../../components/components";
 import { IconBuildingStore, IconClipboardList, IconCoins, IconWallet } from "@tabler/icons-react";
 
 const PageOverview = () => {
@@ -32,29 +32,46 @@ const PageOverview = () => {
                             <ReportSummaryCard
                                 name="earning"
                                 icon={IconCoins}
-                                iconColor="text-green-600"
+                                iconColor="green-600"
+                                amount={8946206}
+                                variance="20%"
+                                variance_performance="positive"
+                                variance_period="this year"
                             />
 
                             <ReportSummaryCard
                                 name="orders"
                                 icon={IconClipboardList}
-                                iconColor="text-purple-600"
+                                iconColor="purple-600"
+                                amount={65482}
+                                variance="50%"
+                                variance_performance="positive"
+                                variance_period="this month"
                             />
 
                             <ReportSummaryCard
                                 name="balance"
                                 icon={IconWallet}
-                                iconColor="text-blue-600"
+                                iconColor="blue-600"
+                                amount={65221544985452}
+                                variance="20%"
+                                variance_performance="negative"
+                                variance_period="this quarter"
                             />
 
                             <ReportSummaryCard
                                 name="total sales"
                                 icon={IconBuildingStore}
-                                iconColor="text-rose-500"
+                                iconColor="rose-500"
+                                amount={98654110540}
+                                variance="252%"
+                                variance_performance="negative"
+                                variance_period="this week"
                             />
                         </div>
 
-                        <ProductSellTable />
+                        {/* Product sold */}
+                        <ReportProductSell />
                     </div>
                 )}
             </div>
