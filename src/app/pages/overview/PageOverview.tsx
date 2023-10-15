@@ -22,13 +22,18 @@ const PageOverview = () => {
                 {!showShimmer && (
                     <div className="flex flex-col gap-8 w-full">
                         {/* Greeting and  Search */}
-                        <div className="search-page flex gap-4 items-center justify-between">
-                            <p>Hello, {userInfo.info.name} 👋🏻</p>
-                            <SearchInput showSearchIcon={true} className="w-[250px]" />
+                        <div className="search-page flex flex-col-reverse lg:flex-row gap-4 lg:items-center justify-between">
+                            <p className=" text-left text-xl font-semibold">Hello, {userInfo.info.name} 👋🏻</p>
+                            <div className="max-lg:bg-white max-lg:dark:bg-neutral-950 max-lg:p-2 max-lg:-m-4 max-lg:mb-0">
+                                <SearchInput
+                                showSearchIcon={true} className="max-lg:bg-zinc-100 w-full max-lg:border-0 lg:w-[250px]"
+                                searchCallback={() => console.log("")}
+                                />
+                            </div>
                         </div>
 
                         {/* report summary */}
-                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
+                        <div className="flex flex-wrap flex-col lg:flex-row gap-4 lg:gap-8">
                             <ReportSummaryCard
                                 name="earning"
                                 icon={IconCoins}
@@ -70,7 +75,7 @@ const PageOverview = () => {
                             />
                         </div>
 
-                        {/* Product sold */}
+                        {/* Product sell */}
                         <ReportProductSell />
                     </div>
                 )}

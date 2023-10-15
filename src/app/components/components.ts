@@ -4,7 +4,7 @@ import SearchInput from './SearchInput';
 import PageSidebar from './pageSidebar/PageSidebar';
 import ReportSummaryCard from './reports/ReportSummaryCard';
 import ReportProductSell, {ReportProductSellShimmer} from './reports/ReportProductSell';
-import ProductsHrTable, {ProductsHrTableShimmer} from './ProductsHrTable';
+import ProductsHrList, {ProductsHrListShimmer} from './ProductsHrList';
 import NetwrokError from './errors/NetwrokError';
 
 export {
@@ -12,8 +12,8 @@ export {
     PageShimmer,
     SearchInput,
     PageSidebar,
-    ProductsHrTable,
-    ProductsHrTableShimmer,
+    ProductsHrList,
+    ProductsHrListShimmer,
 
     // Reports
     ReportSummaryCard,

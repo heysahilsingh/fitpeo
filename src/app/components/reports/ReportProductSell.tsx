@@ -1,9 +1,10 @@
 import { IconChevronDown } from "@tabler/icons-react"
-import { NetwrokError, ProductsHrTable, ProductsHrTableShimmer, SearchInput } from "../components"
+import { NetwrokError, ProductsHrList, ProductsHrListShimmer, SearchInput } from "../components"
 import { useState, Fragment } from 'react';
 import { useRef } from 'react';
 import useClickOutside from "../../hooks/useClickOutside";
 import { useEffect } from 'react';
+import { TypeProductInfo } from "../../typeDefinitions/TypeProductInfo";
 
 const filterByPeriodOptions = [
     {
@@ -43,12 +44,30 @@ const ReportProductSell = (props: ReportProductSellProps) => {
     useClickOutside([filterByPeriodRef], () => setShowFilterByPeriod(false));
 
     // Products
-    // const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<TypeProductInfo[]>([]);
+    const [filteredProducts, setfilteredProducts] = useState<TypeProductInfo[]>([]);
 
-    // Shimmer and Error
+    // Shimme, Error and no product found
     const [showProductsShimmer, setShowProductsShimmer] = useState(true);
     const [showProductsError, setShowProductsError] = useState(false);
 
+    const [noProductFound, setNoProductFound] = useState(false);
+
+    // Handle product search
+    const handleProductSearch = (keyword: string) => {
+        if (keyword == "") setfilteredProducts(products);
+        else {
+            const filtered = products.filter(product => product.title.toUpperCase().includes(keyword.toUpperCase()));
+
+            setfilteredProducts(filtered)
+
+            if (filtered.length > 0) {
+                if (noProductFound) setNoProductFound(false)
+            } else {
+                if (!noProductFound) setNoProductFound(true)
+            }
+        }
+    }
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -59,12 +78,12 @@ const ReportProductSell = (props: ReportProductSellProps) => {
                 const response = await fetch('https://dummyjson.com/products');
                 const responseData = await response.json();
 
-                console.log(responseData);
-
-                throw new Error()
-
-                // Hide loader
-                setShowProductsShimmer(false)
+                if (responseData) {
+                    setProducts(responseData.products);
+                    setfilteredProducts(responseData.products);
+                    // Hide loader
+                    setShowProductsShimmer(false)
+                } else throw new Error()
 
             } catch (error) {
                 console.log(error);
@@ -75,28 +94,32 @@ const ReportProductSell = (props: ReportProductSellProps) => {
         }
 
         fetchProducts()
-    }, [])
+    }, [selectedFilterByPeriodOption])
 
     return (
-        <div className={`flex flex-col rounded-xl bg-white dark:bg-zinc-900 ${props.className || ""}`}>
+        <div className={`report-product-sell flex flex-col rounded-xl bg-white dark:bg-zinc-900 ${props.className || ""}`}>
             {/* Heading, Search and Filter by period */}
-            <div className="py-4 px-8 flex items-center justify-between gap-4">
-                <div className="w-fit font-bold text-xl leading-none grow">Product Sell</div>
+            <div className="px-4 py-6 lg:py-4 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4">
+                <div className="w-full lg:w-fit font-bold text-xl leading-none grow">Product Sell</div>
 
-                <SearchInput showSearchIcon className="border-0 bg-zinc-100" />
+                <SearchInput
+                    showSearchIcon className="w-[20%] grow lg:grow-0 border-0 bg-zinc-100"
+                    searchCallback={handleProductSearch}
+                    placeholder="Search product"
+                />
 
                 <div className="relative" onClick={() => setShowFilterByPeriod(prev => !prev)}>
-                    <div className="cursor-pointer flex items-center justify-between gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg h-full py-2.5 px-3.5 leading-none">
+                    <div className="cursor-pointer flex items-center justify-between gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg h-full lg:py-2 py-2.5 px-3.5 leading-none">
                         <p className="leading-none text-[14px] capitalize">{selectedFilterByPeriodOption.title}</p>
                         <IconChevronDown className={`opacity-50 group-hover:opacity-100 transition ${showFilterByPeriod ? "rotate-180" : ""}`} size={18} />
                     </div>
                     {showFilterByPeriod && (
-                        <div ref={filterByPeriodRef} className="shadow-xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-1 leading-none">
+                        <div ref={filterByPeriodRef} className="shadow-2xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-1 leading-none z-20">
                             <ul className="flex flex-col gap-1">
                                 {filterByPeriodOptions.map((option, index) => (
                                     <Fragment key={option.id}>
                                         <li
-                                            className={`${selectedFilterByPeriodOption.id === option.id ? "bg-zinc-100 dark:bg-zinc-700 opacity-100" : "opacity-70"} min-w-max p-4 rounded-md cursor-pointer hover:opacity hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:opacity-100 capitalize`}
+                                            className={`${selectedFilterByPeriodOption.id === option.id ? "bg-zinc-100 dark:bg-zinc-700 opacity-100" : "opacity-70"} min-w-max p-3 rounded-md cursor-pointer hover:opacity hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:opacity-100 capitalize`}
                                             onClick={() => setSelectedFilterByPeriodOption(option)}
                                         >
                                             {option.title}
@@ -113,16 +136,25 @@ const ReportProductSell = (props: ReportProductSellProps) => {
                 </div>
             </div>
 
-            {/* Products list */}
-            {(showProductsShimmer && !showProductsError) && <ProductsHrTableShimmer />}
+            <div className="px-4 pt-2 pb-8 lg:px-8 lg:pt-4 w-full">
+                {/* Products list Shimmer */}
+                {(showProductsShimmer && !showProductsError) && <ProductsHrListShimmer />}
 
-            {!(showProductsShimmer || showProductsError) && (
-                <ProductsHrTable
-                    className="border-t-[1px] border-zinc-200 dark:border-zinc-700 p-4"
-                />
-            )}
+                {/* Products list */}
+                {!(showProductsShimmer || showProductsError) && (filteredProducts.length > 1) && (
+                    <ProductsHrList className="" products={filteredProducts} />
+                )}
 
-            {(!showProductsShimmer && showProductsError) && <NetwrokError />}
+                {/* Network Error */}
+                {(!showProductsShimmer && showProductsError) && <NetwrokError />}
+
+                {/* No product Found */}
+                {noProductFound && (
+                    <div className="bg-pruple-600 flex p-4 items-center justify-center">
+                        <h1 className='leading-[120%] text-center text-xl w-full opacity-50'>No product found.</h1>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

@@ -23,7 +23,7 @@ const ReportSummaryCard = (props: ReportSummaryCardProps) => {
 
 
     return (
-        <div className="relative w-full flex items-center justify-cent gap-4 rounded-xl overflow-hidden px-5 py-6 transition hover:scale-[1.05] cursor-pointer hover:shadow-2xl bg-white dark:bg-zinc-800">
+        <div className="relative w-full lg:w-fit grow flex items-center justify-cent gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-800">
 
             {/* Icon */}
             <div className="relative rounded-full w-24 h-auto aspect-square">

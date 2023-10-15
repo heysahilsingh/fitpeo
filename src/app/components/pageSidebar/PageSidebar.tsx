@@ -20,7 +20,7 @@ const PageSidebar = () => {
     useClickOutside([navigationRef], () => setShowNavigation(false));
 
     return (
-        <div className="page-sidebar flex fixed top-0 left-0 w-full h-fit border-b lg:border-0 dark:border-neutral-800 bg-white dark:bg-neutral-950 dark:text-slate-200 px-2 py-3 text-neutral-900 lg:dark:text-white lg:dark:bg-[#040440] lg:relative lg:flex-col lg:w-[20%] lg:bg-[#040440] lg:h-full lg:text-white z-50">
+        <div className="page-sidebar flex fixed top-0 left-0 w-full h-fit lg:min-h-screen border-b lg:border-0 dark:border-neutral-800 bg-white dark:bg-neutral-950 dark:text-slate-200 px-2 py-3 text-neutral-900 lg:dark:text-white lg:dark:bg-[#040440] lg:sticky lg:top-0 lg:flex-col lg:w-[20%] lg:bg-[#040440] lg:h-full lg:text-white z-50">
             {/* Heading */}
             <div className="dashboard-heading w-full flex justify-between items-center lg:mb-8 lg:pr-4 lg:pl-5 lg:pt-6">
                 <div className="wrapper flex items-center gap-2">

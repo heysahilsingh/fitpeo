@@ -8,7 +8,7 @@ import {PageSidebar} from "./components/components";
 const App = () => {
     return (
         <UserContextProvider>
-            <div className="flex w-full h-screen">
+            <div className="flex w-full min-h-screen">
                 <PageSidebar />
                 <div className="page-content grow w-2/4"><Outlet /></div>
             </div>
