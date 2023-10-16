@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom"
-import { routes } from "../../config"
+import { routes } from "../../AppConfig"
 import { IconChevronRight } from "@tabler/icons-react"
 
 type NavigationProps = {

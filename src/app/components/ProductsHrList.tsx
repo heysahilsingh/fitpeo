@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/contexts";
 import { TypeProductInfo } from "../typeDefinitions/TypeProductInfo"
 import formatAmount from "../utils/formatAmount"
 import { useContext, useState } from 'react';
+import { routePaths } from "../AppConfig";
 
 type ProductsHrListProps = {
     className?: string,
@@ -13,7 +15,11 @@ const ProductsHrList = (props: ProductsHrListProps) => {
 
     const { userInfo } = useContext(UserContext);
 
+    const navigate = useNavigate();
+
     const [visibleProducts, setVisibleProducts] = useState(10);
+
+    const handleOnCLick = () => navigate(routePaths.products)
 
     return (
         <div className={`product-hr-list max-h-[70vh] overflow-auto lg:overflow-x-hidden flex flex-col bg-white dark:bg-zinc-900 ${props.className || ""}`}>
@@ -30,7 +36,7 @@ const ProductsHrList = (props: ProductsHrListProps) => {
 
                     <div className="flex flex-col gap-4">
                         {props.products.slice(0, visibleProducts).map(product => (
-                            <div key={product.id} className="product flex items-center gap-2 text-sm">
+                            <div onClick={handleOnCLick} key={product.id} className="cursor-pointer product flex items-center gap-2 text-sm">
                                 <div className="max-w-[280px] w-[80%] mr-5 lg:max-w-none lg:w-[30%] lg:mr-10 grow flex items-center gap-3">
                                     <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-200 dark:bg-zinc-800 min-w-[6rem] w-24 aspect-[4/2.5] h-fit rounded-md overflow-hidden">
                                         <img className="object-cover w-full h-full" src={product.images[0]} alt={product.title} />

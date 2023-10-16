@@ -21,7 +21,7 @@ const ReportSummeryCard = (props: ReportSummeryCardProps) => {
     const iconColor = props.iconColor || "#2563EB";
 
     return (
-        <div className="relative w-full lg:w-fit grow flex items-center justify-cent gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-800">
+        <div className="relative w-full lg:w-fit grow flex items-center gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-900">
 
             {/* Icon */}
             <div className="relative rounded-full w-24 h-auto aspect-square">
@@ -53,7 +53,7 @@ const ReportSummeryCard = (props: ReportSummeryCardProps) => {
             </div>
 
             {/* Backdrop */}
-            <div className={`absolute top-0 left-0 w-full h-full z-[1] opacity-0 dark:opacity-10`} style={{backgroundColor: iconColor}}>
+            <div className={`dark:border overflow-hidden rounded-xl absolute top-0 left-0 w-full h-full z-[1]`} style={{borderColor: iconColor}}>
             </div>
         </div>
     )

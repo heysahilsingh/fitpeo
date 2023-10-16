@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/contexts";
-import { Page, PageShimmer, ReportProductSell, ReportSummeryCard, SearchInput } from "../../components/components";
+import { Page, PageShimmer, ReportConvertedCustomers, ReportEarningOverview, ReportProductSell, ReportSummeryCard, SearchInput } from "../../components/components";
 import { IconBuildingStore, IconClipboardList, IconCoins, IconWallet } from "@tabler/icons-react";
 
 const summeryCardData = [
@@ -85,6 +85,12 @@ const PageOverview = () => {
                                     variance_performance={card.variance_performance === "positive" ? "positive" : "negative"}
                                 />
                             ))}
+                        </div>
+
+                        {/* Income overview and Converted customer reports */}
+                        <div className="flex max-lg:flex-wrap gap-4 lg:gap-8 w-full">
+                            <ReportEarningOverview  className="w-full lg:w-[50%] grow"/>
+                            <ReportConvertedCustomers className="w-full lg:w-[25%]"/>
                         </div>
 
                         {/* Product sell */}

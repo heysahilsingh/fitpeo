@@ -1,47 +1,15 @@
-import { IconChevronDown } from "@tabler/icons-react"
-import { NetwrokError, ProductsHrList, ProductsHrListShimmer, SearchInput } from "../components"
-import { useState, Fragment } from 'react';
-import { useRef } from 'react';
-import { useClickOutside } from "../../hooks/hooks";
+import { DropdownSelector, NetwrokError, ProductsHrList, ProductsHrListShimmer, SearchInput } from "../components"
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { TypeProductInfo } from "../../typeDefinitions/TypeProductInfo";
-
-const filterByPeriodOptions = [
-    {
-        title: "Last 7 days",
-        id: "last7days"
-    },
-    {
-        title: "Last 30 days",
-        id: "last30days"
-    },
-    {
-        title: "Last 3 months",
-        id: "last3months"
-    },
-    {
-        title: "Last 6 months",
-        id: "last6months"
-    },
-    {
-        title: "lifetime",
-        id: "lifetime"
-    }
-]
+import themeStyle from "../../themeStyle";
+import constants from './../../constants';
 
 type ReportProductSellProps = {
     className?: string
 }
 
 const ReportProductSell = (props: ReportProductSellProps) => {
-
-    // Filter by period
-    const [showFilterByPeriod, setShowFilterByPeriod] = useState(false);
-    const filterByPeriodRef = useRef(null);
-    const [selectedFilterByPeriodOption, setSelectedFilterByPeriodOption] = useState(filterByPeriodOptions[0]);
-
-    // Set the showUserSetting state to false if clicked outside the userSettingRef.
-    useClickOutside([filterByPeriodRef], () => setShowFilterByPeriod(false));
 
     // Products
     const [products, setProducts] = useState<TypeProductInfo[]>([]);
@@ -69,39 +37,40 @@ const ReportProductSell = (props: ReportProductSellProps) => {
         }
     }
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                if (!showProductsShimmer) setShowProductsShimmer(true);
-                if (showProductsError) setShowProductsError(false);
-                if (noProductFound) setNoProductFound(false)
+    // Fetch product data
+    const fetchProducts = async () => {
+        try {
+            if (!showProductsShimmer) setShowProductsShimmer(true);
+            if (showProductsError) setShowProductsError(false);
+            if (noProductFound) setNoProductFound(false)
 
-                const response = await fetch('https://dummyjson.com/products');
-                const responseData = await response.json();
+            const response = await fetch('https://dummyjson.com/products');
+            const responseData = await response.json();
 
-                if (responseData) {
-                    setProducts(responseData.products);
-                    setfilteredProducts(responseData.products);
-                    // Hide loader
-                    setShowProductsShimmer(false)
-                } else throw new Error()
+            if (responseData) {
+                setProducts(responseData.products);
+                setfilteredProducts(responseData.products);
+                // Hide loader
+                setShowProductsShimmer(false)
+            } else throw new Error()
 
-            } catch (error) {
-                console.log(error);
+        } catch (error) {
+            console.log(error);
 
-                if (showProductsShimmer) setShowProductsShimmer(false);
-                if (!showProductsError) setShowProductsError(true);
-            }
+            if (showProductsShimmer) setShowProductsShimmer(false);
+            if (!showProductsError) setShowProductsError(true);
         }
+    }
 
+    useEffect(() => {
         fetchProducts()
-    }, [selectedFilterByPeriodOption])
+    }, [])
 
     return (
         <div className={`report-product-sell flex flex-col rounded-xl bg-white dark:bg-zinc-900 ${props.className || ""}`}>
             {/* Heading, Search and Filter by period */}
             <div className="px-4 py-6 lg:py-4 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4">
-                <div className="w-full lg:w-fit font-bold text-xl leading-none grow">Product Sell</div>
+                <div className={`w-full lg:w-fit grow ${themeStyle.H1_STYLE}`}>Product Sell</div>
 
                 <SearchInput
                     showSearchIcon className="w-[20%] grow lg:grow-0 border-0 bg-zinc-100"
@@ -109,32 +78,10 @@ const ReportProductSell = (props: ReportProductSellProps) => {
                     placeholder="Search product"
                 />
 
-                <div className="relative" onClick={() => setShowFilterByPeriod(prev => !prev)}>
-                    <div className="cursor-pointer flex items-center justify-between gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg h-full lg:py-2 py-2.5 px-3.5 leading-none">
-                        <p className="leading-none text-[14px] capitalize">{selectedFilterByPeriodOption.title}</p>
-                        <IconChevronDown className={`opacity-50 group-hover:opacity-100 transition ${showFilterByPeriod ? "rotate-180" : ""}`} size={18} />
-                    </div>
-                    {showFilterByPeriod && (
-                        <div ref={filterByPeriodRef} className="shadow-2xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-1 leading-none z-20">
-                            <ul className="flex flex-col gap-1">
-                                {filterByPeriodOptions.map((option, index) => (
-                                    <Fragment key={option.id}>
-                                        <li
-                                            className={`${selectedFilterByPeriodOption.id === option.id ? "bg-zinc-100 dark:bg-zinc-700 opacity-100" : "opacity-70"} min-w-max p-3 rounded-md cursor-pointer hover:opacity hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:opacity-100 capitalize`}
-                                            onClick={() => setSelectedFilterByPeriodOption(option)}
-                                        >
-                                            {option.title}
-                                        </li>
-                                        {index !== filterByPeriodOptions.length - 1 && (
-                                            <hr className='bg-zinc-200 dark:bg-zinc-600 h-[1px] border-none' />
-                                        )}
-                                    </Fragment>
-                                ))}
-                            </ul>
-
-                        </div>
-                    )}
-                </div>
+                <DropdownSelector
+                    options={constants.filterByPeriodOptions}
+                    onSelect={() => fetchProducts()}
+                />
             </div>
 
             <div className="px-4 pt-2 pb-8 lg:px-8 lg:pt-4 w-full">
