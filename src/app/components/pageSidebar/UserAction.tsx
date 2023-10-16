@@ -56,7 +56,7 @@ const UserAction = () => {
                                 <IconMoonStars stroke={1.5} size={22} />
                                 Dark Mode
                             </label>
-                            <input onChange={handleDarkMode} type="checkbox" id="darkMode" className="dark-toggle" />
+                            <input onChange={handleDarkMode} type="checkbox" id="darkMode" className="dark-toggle ml-3" />
                         </div>
                         <hr className='bg-white opacity-20 h-[1px] border-none' />
                         <div className="flex items-center gap-1.5 cursor-pointer opacity-70 hover:opacity-100">

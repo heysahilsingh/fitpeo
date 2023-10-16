@@ -1,7 +1,46 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/contexts";
-import { Page, PageShimmer, ReportProductSell, ReportSummaryCard, SearchInput } from "../../components/components";
+import { Page, PageShimmer, ReportProductSell, ReportSummeryCard, SearchInput } from "../../components/components";
 import { IconBuildingStore, IconClipboardList, IconCoins, IconWallet } from "@tabler/icons-react";
+
+const summeryCardData = [
+    {
+        name: "Earning",
+        icon: IconCoins,
+        iconColor: "#16A34A",
+        amount: 8946206,
+        variance: "20%",
+        variance_performance: "negative",
+        variance_period: "this year",
+    },
+    {
+        name: "orders",
+        icon: IconClipboardList,
+        iconColor: "#9333EA",
+        amount: 65482,
+        variance: "50%",
+        variance_performance: "positive",
+        variance_period: "this month",
+    },
+    {
+        name: "balance",
+        icon: IconWallet,
+        iconColor: "#2563EB",
+        amount: 65221544985452,
+        variance: "37%",
+        variance_performance: "positive",
+        variance_period: "this year",
+    },
+    {
+        name: "total sales",
+        icon: IconBuildingStore,
+        iconColor: "#F43F5E",
+        amount: 98654110540,
+        variance: "6%",
+        variance_performance: "negative",
+        variance_period: "this year",
+    },
+];
 
 const PageOverview = () => {
     const [showShimmer, setShowShimmer] = useState(true);
@@ -26,53 +65,26 @@ const PageOverview = () => {
                             <p className=" text-left text-xl font-semibold">Hello, {userInfo.info.name} 👋🏻</p>
                             <div className="max-lg:bg-white max-lg:dark:bg-neutral-950 max-lg:p-2 max-lg:-m-4 max-lg:mb-0">
                                 <SearchInput
-                                showSearchIcon={true} className="max-lg:bg-zinc-100 w-full max-lg:border-0 lg:w-[250px]"
-                                searchCallback={() => console.log("")}
+                                    showSearchIcon={true} className="max-lg:bg-zinc-100 w-full max-lg:border-0 lg:w-[250px]"
+                                    searchCallback={() => console.log("")}
                                 />
                             </div>
                         </div>
 
                         {/* report summary */}
                         <div className="flex flex-wrap flex-col lg:flex-row gap-4 lg:gap-8">
-                            <ReportSummaryCard
-                                name="earning"
-                                icon={IconCoins}
-                                iconColor="green-600"
-                                amount={8946206}
-                                variance="20%"
-                                variance_performance="positive"
-                                variance_period="this year"
-                            />
-
-                            <ReportSummaryCard
-                                name="orders"
-                                icon={IconClipboardList}
-                                iconColor="purple-600"
-                                amount={65482}
-                                variance="50%"
-                                variance_performance="positive"
-                                variance_period="this month"
-                            />
-
-                            <ReportSummaryCard
-                                name="balance"
-                                icon={IconWallet}
-                                iconColor="blue-600"
-                                amount={65221544985452}
-                                variance="20%"
-                                variance_performance="negative"
-                                variance_period="this quarter"
-                            />
-
-                            <ReportSummaryCard
-                                name="total sales"
-                                icon={IconBuildingStore}
-                                iconColor="rose-500"
-                                amount={98654110540}
-                                variance="252%"
-                                variance_performance="negative"
-                                variance_period="this week"
-                            />
+                            {summeryCardData.map(card => (
+                                <ReportSummeryCard
+                                    key={card.name}
+                                    name={card.name}
+                                    amount={card.amount}
+                                    icon={card.icon}
+                                    iconColor={card.iconColor}
+                                    variance={card.variance}
+                                    variance_period={card.variance_period}
+                                    variance_performance={card.variance_performance === "positive" ? "positive" : "negative"}
+                                />
+                            ))}
                         </div>
 
                         {/* Product sell */}

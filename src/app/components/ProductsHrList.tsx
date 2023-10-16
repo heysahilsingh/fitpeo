@@ -16,7 +16,7 @@ const ProductsHrList = (props: ProductsHrListProps) => {
     const [visibleProducts, setVisibleProducts] = useState(10);
 
     return (
-        <div className={`product-hr-list max-h-[70vh] overflow-scroll lg:overflow-x-hidden flex flex-col bg-white dark:bg-zinc-900 ${props.className || ""}`}>
+        <div className={`product-hr-list max-h-[70vh] overflow-auto lg:overflow-x-hidden flex flex-col bg-white dark:bg-zinc-900 ${props.className || ""}`}>
             {props.products.length > 1 && (
                 <div className="products-list grid grid-cols-1 w-max lg:w-full">
                     {!props.hideHeader && (
@@ -51,7 +51,7 @@ const ProductsHrList = (props: ProductsHrListProps) => {
                     {(props.products.length > 5 && visibleProducts < props.products.length) && (
                         <div className="lg:mx-auto">
                             <button
-                                className="mt-8 lg:mt-12 py-3 px-5 leading-none rounded-md bg-primary text-white hover:opacity-80"
+                                className="mt-8 lg:mt-12 py-4 px-12 leading-none rounded-md bg-primary text-white hover:opacity-80"
                                 onClick={() => setVisibleProducts(props.products.length)}
                             >
                                 View all

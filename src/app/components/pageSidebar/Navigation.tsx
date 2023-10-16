@@ -13,7 +13,7 @@ const Navigation = (props: NavigationProps) => {
     const currentUrl = url.pathname;
 
     return (
-        <div className={`navigation grow overflow-y-scroll min-h-[100px]`}>
+        <div className={`navigation grow overflow-y-auto no-scrollba min-h-[100px]`}>
             <ul className="flex flex-col gap-5">
                 {routes.map(route => (
                     <li key={route.name}>

@@ -74,6 +74,7 @@ const ReportProductSell = (props: ReportProductSellProps) => {
             try {
                 if (!showProductsShimmer) setShowProductsShimmer(true);
                 if (showProductsError) setShowProductsError(false);
+                if (noProductFound) setNoProductFound(false)
 
                 const response = await fetch('https://dummyjson.com/products');
                 const responseData = await response.json();

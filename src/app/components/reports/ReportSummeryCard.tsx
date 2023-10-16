@@ -4,36 +4,34 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/contexts';
 import { formatAmount } from '../../utils/utils';
 
-type ReportSummaryCardProps = {
+type ReportSummeryCardProps = {
     icon: React.FC<{ className?: string, stroke?: number }>,
     name: string,
     amount: number,
     variance: string,
-    variance_period: "this year" | "this quarter" | "this month" | "this week" | "today",
+    variance_period: string | "this year" | "this quarter" | "this month" | "this week" | "today",
     variance_performance: "negative" | "positive",
     iconColor?: string
 }
 
-const ReportSummaryCard = (props: ReportSummaryCardProps) => {
+const ReportSummeryCard = (props: ReportSummeryCardProps) => {
 
     const { userInfo } = useContext(UserContext);
 
-    const iconTextColor = props.iconColor ? "text-" + props.iconColor : "text-blue-600";
-    const iconBgColor = props.iconColor ? "bg-" + props.iconColor : "bg-blue-600";
-
+    const iconColor = props.iconColor || "#2563EB";
 
     return (
         <div className="relative w-full lg:w-fit grow flex items-center justify-cent gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-800">
 
             {/* Icon */}
             <div className="relative rounded-full w-24 h-auto aspect-square">
-                <div className={`absolute top-0 left-0 translate-x-2/4 translate-y-2/4 w-2/4 h-2/4 z-[2] ${iconTextColor}`}>
+                <div className={`absolute top-0 left-0 translate-x-2/4 translate-y-2/4 w-2/4 h-2/4 z-[2]`} style={{color: iconColor}}>
                     {props.icon ?
                         <props.icon className={`w-full h-full`} stroke={1.5} />
                         :
                         <IconChartLine className={`w-full h-full`} stroke={1.5} />}
                 </div>
-                <div className={`absolute top-0 left-0 w-full h-full ${iconTextColor} overflow-hidden z-[1] rounded-full opacity-[15%] dark:opacity-30`}>
+                <div className={`absolute top-0 left-0 w-full h-full overflow-hidden z-[1] rounded-full opacity-[15%] dark:opacity-30`} style={{color: iconColor}}>
                     <IconSquareRoundedFilled className='w-full h-full scale-150' />
                 </div>
             </div>
@@ -55,10 +53,10 @@ const ReportSummaryCard = (props: ReportSummaryCardProps) => {
             </div>
 
             {/* Backdrop */}
-            <div className={`absolute top-0 left-0 w-full h-full ${iconBgColor} z-[1] opacity-0 dark:opacity-10`}>
+            <div className={`absolute top-0 left-0 w-full h-full z-[1] opacity-0 dark:opacity-10`} style={{backgroundColor: iconColor}}>
             </div>
         </div>
     )
 }
 
-export default ReportSummaryCard
+export default ReportSummeryCard

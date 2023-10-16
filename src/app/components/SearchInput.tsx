@@ -14,7 +14,7 @@ const SearchInput = (props: SearchInputProps) => {
     const searchInputRef = useRef<HTMLInputElement | null>(null)
     const [clearSearch, setClearSearch] = useState(false);
 
-    const debounceSearch = debouncer<string>(props.searchCallback, 700);
+    const debounceSearch = debouncer<string>(props.searchCallback, 500);
 
     // Handle search function
     const handleSearch = (element: ChangeEvent<HTMLInputElement>) => {
