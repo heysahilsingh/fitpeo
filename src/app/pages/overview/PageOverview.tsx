@@ -89,8 +89,8 @@ const PageOverview = () => {
 
                         {/* Income overview and Converted customer reports */}
                         <div className="flex max-lg:flex-wrap gap-4 lg:gap-8 w-full">
-                            <ReportEarningOverview  className="w-full lg:w-[50%] grow"/>
-                            <ReportConvertedCustomers className="w-full lg:w-[25%]"/>
+                            <ReportEarningOverview  className="w-full lg:w-[50%] grow overflow-x-auto"/>
+                            <ReportConvertedCustomers className="w-full lg:w-fit"/>
                         </div>
 
                         {/* Product sell */}

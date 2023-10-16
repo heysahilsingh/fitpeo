@@ -8,6 +8,30 @@ type ReportEarningOverviewProps = {
 
 const ReportEarningOverview = (props: ReportEarningOverviewProps) => {
 
+    const saLabels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'January',
+        'February',
+        'March',
+        'January',
+        'February',
+        'March',
+        'January',
+        'February',
+        'March',
+        'January',
+        'February',
+        'March',
+        'January',
+        'February',
+        'March'
+    ]
 
     return (
         <div className={`flex flex-col gap-6 bg-white dark:bg-zinc-900 rounded-xl overflow-hidden h-auto px-4 py-6 lg:py-4 lg:px-8 ${props.className || ""}`}>
@@ -20,12 +44,10 @@ const ReportEarningOverview = (props: ReportEarningOverviewProps) => {
                 />
             </div>
             <div className="charts flex w-full overflow-x-auto">
-                <div className="max-lg:min-w-[150vw] w-full">
-                    <BarChart
-                        labels={['January', 'February', 'March', 'April', 'May', 'June', 'July, January', 'February', 'March']}
-                        data={['January', 'February', 'March', 'April', 'May', 'June', 'July, January', 'February', 'March'].map(() => Math.floor(Math.random() * 101))}
-                    />
-                </div>
+                <BarChart
+                    labels={saLabels}
+                    data={saLabels.map(() => Math.floor(Math.random() * 101))}
+                />
             </div>
         </div>
     )

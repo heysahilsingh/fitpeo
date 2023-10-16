@@ -1,4 +1,4 @@
-import { Chart, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, Tooltip} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 // Register comps
@@ -11,10 +11,11 @@ Chart.register(
 
 // Chart options
 const chartOptions = {
+    responsive: true,
     elements: {
         bar: {
-            borderRadius: 15,
-            borderSkipped: false
+            borderRadius: 10,
+            borderSkipped: false,
         },
     },
     scales: {
@@ -27,6 +28,8 @@ const chartOptions = {
                     size: 14,
                     weight: "bold"
                 },
+                maxRotation: 0,
+                minRotation: 0,
             },
         },
         y: {
@@ -47,10 +50,13 @@ const chartOptions = {
 type BarChartProps = {
     labels: string[],
     data: string | number[],
-    tooltipTitle?: string
+    tooltipTitle?: string,
+    className?: string
 }
 
 const BarChart = (props: BarChartProps) => {
+
+    const barThickness = 40;
 
     // Chart labels
     const chartLabels = props.labels || [""];
@@ -66,16 +72,23 @@ const BarChart = (props: BarChartProps) => {
                 label: props.tooltipTitle || "",
                 data: chartData,
                 backgroundColor: 'rgb(90, 50, 234, 0.2)',
-                hoverBackgroundColor: 'rgb(90, 50, 234)'
+                hoverBackgroundColor: 'rgb(90, 50, 234)',
+                barThickness,
             }
         ],
     };
 
     return (
-        <div className="bar-chart flex w-full items-center">
+        <div className="bar-chart flex items-center">
             {props.labels && props.data && props.labels.length > 1 && props.data.length > 1
                 ?
-                <Bar className="w-full" options={chartOptions} data={data} />
+                <Bar
+                    className={`${props.className || ""} pb-3`}
+                    options={chartOptions}
+                    data={data}
+                    width={(data.labels.length * barThickness) + (data.labels.length * 20)}
+                    height={300}
+                />
                 :
                 <h1 className='leading-[120%] text-center text-xl w-full opacity-50'>No data to be shown here..</h1>
             }
