@@ -6,6 +6,12 @@ const themeStyle = {
             y: 8
         },
         boxPadding: 5,
+        callbacks: {
+            label: (tooltipItem, data) => {
+                // Append "SA" to the tooltip's body value
+                return 'SA ' + tooltipItem.yLabel;
+            },
+        },
     }
 }
 

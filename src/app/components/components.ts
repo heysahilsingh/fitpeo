@@ -11,6 +11,8 @@ import DoughnutChart from './charts/DoughnutChart';
 import ReportConvertedCustomers from './reports/ReportConvertedCustomers';
 import ReportEarningOverview from './reports/ReportEarningOverview';
 import DropdownSelector from './DropdownSelector';
+import ThemeAppearanceBtn from './ThemeAppearanceBtn';
+import UserAuthProvider from './UserAuthProvider';
 
 export {
     Page,
@@ -20,6 +22,8 @@ export {
     ProductsHrList,
     ProductsHrListShimmer,
     DropdownSelector,
+    ThemeAppearanceBtn,
+    UserAuthProvider,
 
     // Reports
     ReportSummeryCard,

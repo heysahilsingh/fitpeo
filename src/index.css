@@ -124,18 +124,18 @@ input {
 }
 
 
-.dark-toggle:checked {
+input[type="checkbox"]:checked {
   background-color: #2563EB !important;
 }
 
-.dark-toggle:checked:after {
+input[type="checkbox"]:checked:after {
   /* transform: translate(100%, -50%) !important; */
   right: 3px;
   left: auto;
   background-color: white !important;
 }
 
-.dark-toggle {
+input[type="checkbox"] {
   height: 22px !important;
   width: 40px !important;
   border-radius: 15px !important;
@@ -149,7 +149,7 @@ input {
   outline: none !important;
 }
 
-.dark-toggle:after {
+input[type="checkbox"]:after {
   content: '';
   position: absolute !important;
   top: 50% !important;

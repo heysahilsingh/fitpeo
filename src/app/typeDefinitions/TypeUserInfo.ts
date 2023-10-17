@@ -1,6 +1,6 @@
 export type TypeUserInfo = {
     auth: {
-        loggedIn: boolean
+        loggedIn: boolean,
     },
     info: {
         name: string,

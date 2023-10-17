@@ -1,5 +1,5 @@
 import { IconChevronDown } from '@tabler/icons-react';
-import { useState} from 'react';
+import { useState } from 'react';
 import { useRef } from 'react';
 import useClickOutside from '../hooks/useClickOutside';
 
@@ -43,10 +43,11 @@ const DropdownSelector = (props: DropdownSelectorProps) => {
                 <IconChevronDown className={`opacity-50 group-hover:opacity-100 transition ${showFilterByPeriod ? "rotate-180" : ""}`} size={18} />
             </div>
             {showFilterByPeriod && (
-                <div className="shadow-2xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 leading-none z-20">
+                <div className="shadow-2xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 leading-none z-20 min-w-fit w-max">
                     <ul className="flex flex-col gap-2">
                         {props.options?.length > 1 && props.options.map(option => (
                             <li
+                                key={option.id}
                                 className={`${selectedFilterByPeriodOption.id === option.id ? "bg-zinc-100 dark:bg-zinc-700 opacity-100" : "opacity-70"} min-w-max p-3 rounded-md cursor-pointer hover:opacity hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:opacity-100 capitalize`}
                                 onClick={() => handleOnOptionSelect(option)}
                             >

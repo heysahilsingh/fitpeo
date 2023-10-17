@@ -8,7 +8,7 @@ type TypeUserContext = {
 }
 
 // Create the initial context
-const getUserInfo = localStorage.getItem("userInfoo");
+const getUserInfo = localStorage.getItem("userInfo");
 const initialUserInfo: TypeUserInfo = getUserInfo ? JSON.parse(getUserInfo) : (
     {
         auth: {

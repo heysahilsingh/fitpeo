@@ -2,16 +2,27 @@ import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "./context/providers"
 import { PageCustomers, PageOverview, PageHelp, PageIncome, PageProduct, PagePromote } from "./pages/pages"
 import { routePaths } from "./AppConfig.tsx";
-import {PageSidebar} from "./components/components";
+import { PageSidebar, UserAuthProvider } from "./components/components";
+import { useEffect } from "react";
 
 
 const App = () => {
+    const themeAppearance = localStorage.getItem("themeAppearance");
+
+    useEffect(() => {
+        // Remove both classes and then add the appropriate one
+        document.documentElement.classList.remove("dark", "light");
+        document.documentElement.classList.add(themeAppearance === "dark" ? "dark" : "light");
+    }, []);
+
     return (
         <UserContextProvider>
-            <div className="flex w-full min-h-screen">
-                <PageSidebar />
-                <div className="page-content grow w-2/4"><Outlet /></div>
-            </div>
+            <UserAuthProvider>
+                <div className="flex w-full min-h-screen">
+                    <PageSidebar />
+                    <div className="page-content grow w-2/4"><Outlet /></div>
+                </div>
+            </UserAuthProvider>
         </UserContextProvider>
     )
 }
