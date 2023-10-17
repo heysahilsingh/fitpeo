@@ -1,5 +1,6 @@
-import { Chart, CategoryScale, LinearScale, BarElement, Tooltip} from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import themeStyle from '../../themeStyle';
 
 // Register comps
 Chart.register(
@@ -45,6 +46,9 @@ const chartOptions = {
             },
         },
     },
+    plugins: {
+        tooltip: themeStyle.CHART_TOOLTIP,
+    },
 };
 
 type BarChartProps = {
@@ -59,7 +63,7 @@ const BarChart = (props: BarChartProps) => {
     const barThickness = 40;
 
     // Chart labels
-    const chartLabels = props.labels || [""];
+    const chartLabels = props.labels || [];
 
     // Chart data
     const chartData = chartLabels.map(() => Math.floor(Math.random() * 101));
@@ -80,20 +84,27 @@ const BarChart = (props: BarChartProps) => {
 
     return (
         <div className="bar-chart flex items-center">
-            {props.labels && props.data && props.labels.length > 1 && props.data.length > 1
-                ?
-                <Bar
-                    className={`${props.className || ""} pb-3`}
-                    options={chartOptions}
-                    data={data}
-                    width={(data.labels.length * barThickness) + (data.labels.length * 20)}
-                    height={300}
-                />
-                :
-                <h1 className='leading-[120%] text-center text-xl w-full opacity-50'>No data to be shown here..</h1>
-            }
-        </div>
+            {props.data && props.labels && (
+                <>
+                    {(props?.labels.length > 1 && props.data.length > 1)
+                        ?
+                        <Bar
+                            className={`${props.className || ""} pb-3`}
+                            options={chartOptions}
+                            data={data}
+                            width={(data.labels.length * barThickness) + (data.labels.length * 20)}
+                            height={300}
+                        />
+                        :
+                        <h1 className='leading-[120%] text-center text-xl w-full opacity-50'>No data to be shown here..</h1>
+                    }
+                </>
+            )}
 
+            {!(props.data && props.labels) && (
+                <h1 className='leading-[120%] text-center text-xl w-full opacity-50'>No data provided.</h1>
+            )}
+        </div>
     )
 }
 
