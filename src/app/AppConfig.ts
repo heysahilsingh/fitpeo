@@ -14,37 +14,37 @@ export const routes = [
     {
         name: "Overview",
         path: routePaths.overview,
-        icon: <IconChartBar />,
+        icon: IconChartBar,
         // page: PageOverview
     },
     {
         name: "Products",
         path: routePaths.products,
-        icon: <IconCube />,
+        icon: IconCube,
         // page: PageProduct
     },
     {
         name: "Customers",
         path: routePaths.customers,
-        icon: <IconUserSquareRounded />,
+        icon: IconUserSquareRounded,
         // page: PageCustomers
     },
     {
         name: "Income",
         path: routePaths.income,
-        icon: <IconWallet />,
+        icon: IconWallet,
         // page: PageIncome
     },
     {
         name: "Promote",
         path: routePaths.promote,
-        icon: <IconAdCircle />,
+        icon: IconAdCircle,
         // page: PagePromote
     },
     {
         name: "Help",
         path: routePaths.help,
-        icon: <IconMessageChatbot />,
+        icon: IconMessageChatbot,
         // page: PageHelp
     },
 ]

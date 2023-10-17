@@ -39,8 +39,6 @@ export const UserContextProvider = (props: React.PropsWithChildren<object>) => {
     const updateUserInfo = (newInfo: TypeUserInfo) => {
         const newUserInfo: TypeUserInfo = newInfo;
 
-        console.warn('Updated user info:', newUserInfo);
-
         // Update user DB
         localStorage.setItem("userInfo", JSON.stringify(newUserInfo));
 

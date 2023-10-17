@@ -12,7 +12,7 @@ import ReportConvertedCustomers from './reports/ReportConvertedCustomers';
 import ReportEarningOverview from './reports/ReportEarningOverview';
 import DropdownSelector from './DropdownSelector';
 import ThemeAppearanceBtn from './ThemeAppearanceBtn';
-import UserAuthProvider from './UserAuthProvider';
+import AuthProvider from './AuthProvider';
 
 export {
     Page,
@@ -23,7 +23,7 @@ export {
     ProductsHrListShimmer,
     DropdownSelector,
     ThemeAppearanceBtn,
-    UserAuthProvider,
+    AuthProvider,
 
     // Reports
     ReportSummeryCard,

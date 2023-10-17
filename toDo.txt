@@ -1,32 +1,6 @@
-                    const thCSS = "z-2 sticky top-0 bg-white dark:bg-zinc-900 font-medium text-[13px] border-b-[1px] py-4 border-zinc-200 dark:border-zinc-700 leading-none";
-                    
-                    <table className="w-full">
-                        {!props.hideHeader && (
-                            <thead>
-                                <tr className="text-left">
-                                    <th className={thCSS}>Product Name</th>
-                                    <th className={thCSS}>Stock</th>
-                                    <th className={thCSS}>Price</th>
-                                    <th className={thCSS}>Total Sales</th>
-                                </tr>
-                            </thead>
-                        )}
-                        <tbody>
-                            {props.products.slice(0, visibleProducts).map(product => (
-                                <tr key={product.id} className="cursor-pointer font-semibold">
-                                    <td className="flex items-center gap-3 mt-4 mr-6">
-                                        <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-200 dark:bg-zinc-800 min-w-[6rem] w-24 aspect-[4/2.5] h-fit rounded-md overflow-hidden">
-                                            <img className="object-cover w-full h-full" src={product.images[0]} alt={product.title} />
-                                        </div>
-                                        <div className="name flex flex-col">
-                                            <p className="overflow-hidden whitespace-nowrap text-ellipsis font-semibold">{product.title}</p>
-                                            <p className="hidden overflow-hidden whitespace-nowrap text-ellipsis opacity-50 text-xs">{product.description}</p>
-                                        </div>
-                                    </td>
-                                    <td className={`whitespace-nowrap ${product.stock < 1 ? "text-red-600" : ""}`}>{product.stock} in stock</td>
-                                    <td className="whitespace-nowrap font-bold">{userInfo.info.currency} {formatAmount(product.price)}</td>
-                                    <td className="whitespace-nowrap">{parseInt(String(product.rating * 50))}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+{
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/.*", "dest": "/index.html" }
+    ]
+  }

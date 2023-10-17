@@ -1,8 +1,8 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "./context/providers"
 import { PageCustomers, PageOverview, PageHelp, PageIncome, PageProduct, PagePromote } from "./pages/pages"
-import { routePaths } from "./AppConfig.tsx";
-import { PageSidebar, UserAuthProvider } from "./components/components";
+import { routePaths } from "./AppConfig.ts";
+import { AuthProvider, PageSidebar } from "./components/components";
 import { useEffect } from "react";
 
 
@@ -17,12 +17,12 @@ const App = () => {
 
     return (
         <UserContextProvider>
-            <UserAuthProvider>
+            <AuthProvider>
                 <div className="flex w-full min-h-screen">
                     <PageSidebar />
                     <div className="page-content grow w-2/4"><Outlet /></div>
                 </div>
-            </UserAuthProvider>
+            </AuthProvider>
         </UserContextProvider>
     )
 }
