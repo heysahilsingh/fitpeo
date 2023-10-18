@@ -73,7 +73,7 @@ const BarChart = (props: BarChartProps) => {
                 ...themeStyle.CHART_TOOLTIP,
                 enabled: props.showTooltip,
                 callbacks: {
-                    label: function (context: {formattedValue: string}) {
+                    label: function (context: { formattedValue: string }) {
                         return `${props.tooltipBodyLabel || ""} ${props.tooltipBodyValuePrefix || ""}${context.formattedValue}${props.tooltipBodyValueSuffix || ""}`;
                     },
                 },
@@ -102,7 +102,9 @@ const BarChart = (props: BarChartProps) => {
     };
 
     // Update the width of the chart
-    useEffect(() => setChartWidth((chartCategories.length * barThickness) + ((chartCategories.length - 1) * 20) + 40), [props.categories])
+    useEffect(() => {
+        setChartWidth((chartCategories.length * barThickness) + ((chartCategories.length - 1) * 20) + 40)
+    }, [props.categories])
 
     return (
         <div className="bar-chart flex items-center w-full">

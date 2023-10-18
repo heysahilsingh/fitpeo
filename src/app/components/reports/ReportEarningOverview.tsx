@@ -37,7 +37,7 @@ const ReportEarningOverview = (props: ReportEarningOverviewProps) => {
 
     return (
         <div className={`flex flex-col gap-6 bg-white dark:bg-zinc-900 rounded-xl overflow-hidden overflow-y-auto h-auto px-4 py-6 lg:py-4 lg:px-8 ${props.className || ""}`}>
-            <div className="header flex items-center justify-between gap-4">
+            <div className="header flex-wrap flex items-center justify-between gap-3 lg:gap-4">
                 <p className={`${themeStyle.H1_STYLE}`}>Earning Overview</p>
                 <DropdownSelector
                     options={constants.filterByPeriodOptions}

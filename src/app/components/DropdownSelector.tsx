@@ -38,12 +38,12 @@ const DropdownSelector = (props: DropdownSelectorProps) => {
 
     return (
         <div ref={filterByPeriodRef} className="relative" onClick={() => setShowFilterByPeriod(prev => !prev)}>
-            <div className="cursor-pointer flex items-center justify-between gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg h-full lg:py-2 py-2.5 px-3.5 leading-none">
+            <div className="min-w-max cursor-pointer flex items-center justify-between gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg h-full lg:py-2 py-2.5 px-3.5 leading-none">
                 <p className="leading-none text-[14px] capitalize">{selectedFilterByPeriodOption.name}</p>
                 <IconChevronDown className={`opacity-50 group-hover:opacity-100 transition ${showFilterByPeriod ? "rotate-180" : ""}`} size={18} />
             </div>
             {showFilterByPeriod && (
-                <div className="shadow-2xl absolute bottom-0 translate-y-[102%] right-0 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 leading-none z-20 min-w-fit w-max">
+                <div className="shadow-2xl absolute bottom-0 translate-y-[102%] right-2/4 translate-x-2/4 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 p-2 leading-none z-20 min-w-fit w-max">
                     <ul className="flex flex-col gap-2">
                         {props.options?.length > 1 && props.options.map(option => (
                             <li

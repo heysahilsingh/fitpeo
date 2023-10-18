@@ -42,7 +42,7 @@ const PageSidebar = () => {
             </div>
 
             {/* Navigatoin and User settig */}
-            <div ref={navigationRef} className={`grow h-full lg:h-[200px] transition duration-500 flex flex-col gap-5 p-6 pt-20 lg:px-4 lg:pt-6 lg:pb-8 bg-[#040440] text-white ${device.isDesk ? "" : "fixed left-[0%] top-0 w-[75%] shadow-2xl -translate-x-[150%]"} ${showNavigation ? "!translate-x-[0%]" : ""}`}>
+            <div ref={navigationRef} className={`grow h-full lg:h-[200px] transition duration-500 flex flex-col gap-5 p-6 pt-20 lg:px-4 lg:pt-6 lg:pb-8 bg-[#040440] text-white ${device.isDesk ? "" : "fixed left-[0%] top-0 max-sm:w-[75%] max-md:w-[50%] max-lg:w-[35%] shadow-2xl -translate-x-[150%]"} ${showNavigation ? "!translate-x-[0%]" : ""}`}>
                 <Navigation onSelect={() => !device.isDesk && setShowNavigation(false)} />
                 <UserAction />
             </div>

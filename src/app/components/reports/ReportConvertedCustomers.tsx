@@ -25,7 +25,7 @@ const ReportConvertedCustomers = (props: ReportConvertedCustomersProps) => {
                 <h1 className={themeStyle.H1_STYLE}>Customers</h1>
                 <p className="text-xs opacity-50 font-semibold">Customers who buy products.</p>
             </div>
-            <div className="charts flex h-full w-full min-w-fit">
+            <div className="charts flex h-full min-w-fit">
                 <DoughnutChart
                     categories={APIData}
                     categoriesValue={APIData_Value}
@@ -35,7 +35,8 @@ const ReportConvertedCustomers = (props: ReportConvertedCustomersProps) => {
 
                     content={
                         <div className="flex flex-col items-center justify-center w-full h-full gap-1">
-                            <div className="w-4 h-2 rounded-full bg-[#F33A9B]"></div>
+                            <div className="w-0 h-0  border-l-[8px] border-l-transparent border-b-[10px] border-b-[#F33A9B] border-r-[8px] border-r-transparent">
+                            </div>
                             <p className="font-black leading-none text-[2rem]">{newCustomersPercentage}%</p>
                             <p className="font-bold opacity-70 leading-[100%]">Total new customers</p>
                         </div>

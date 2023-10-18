@@ -61,21 +61,22 @@ const PageOverview = () => {
                 {!showShimmer && (
                     <div className="flex flex-col gap-8 w-full">
                         {/* Greeting and  Search */}
-                        <div className="search-page flex flex-col-reverse lg:flex-row gap-4 lg:items-center justify-between">
+                        <div className="search-page flex max-sm:flex-col-reverse lg:flex-row gap-4 lg:items-center justify-between">
                             <p className=" text-left text-xl font-semibold">Hello, {userInfo.info.name} 👋🏻</p>
-                            <div className="max-lg:bg-white max-lg:dark:bg-neutral-950 max-lg:p-2 max-lg:-m-4 max-lg:mb-0">
+                            <div className="max-sm:bg-white max-sm:dark:bg-neutral-950 max-sm:p-2 max-sm:-m-4 max-sm:mb-0">
                                 <SearchInput
-                                    showSearchIcon={true} className="max-lg:bg-zinc-100 w-full max-lg:border-0 lg:w-[250px]"
+                                    showSearchIcon={true} className="max-sm:bg-zinc-100 w-full max-sm:border-0 lg:w-[250px]"
                                     searchCallback={() => console.log("")}
                                 />
                             </div>
                         </div>
 
                         {/* report summary */}
-                        <div className="flex flex-wrap flex-col lg:flex-row gap-4 lg:gap-8">
+                        <div className="flex flex-wrap gap-4 lg:gap-8">
                             {summeryCardData.map(card => (
                                 <ReportSummeryCard
                                     key={card.name}
+                                    className="grow"
                                     name={card.name}
                                     amount={card.amount}
                                     icon={card.icon}
@@ -88,12 +89,12 @@ const PageOverview = () => {
                         </div>
 
                         {/* Income overview and Converted customer reports */}
-                        <div className="flex max-lg:flex-wrap gap-4 lg:gap-8 w-full">
-                            <ReportEarningOverview  className="w-full lg:w-[50%] grow overflow-x-auto"/>
-                            <ReportConvertedCustomers className="w-full lg:w-fit"/>
+                        <div className="flex max-sm:flex-wrap gap-4 lg:gap-8 w-full">
+                            <ReportEarningOverview  className="w-[50%] grow lg:w-[50%] overflow-x-auto"/>
+                            <ReportConvertedCustomers className="max-sm:w-full md:w-[40%] lg:w-fit"/>
                         </div>
 
-                        {/* Product sell */}
+                        {/* Product sell Report*/}
                         <ReportProductSell />
                     </div>
                 )}

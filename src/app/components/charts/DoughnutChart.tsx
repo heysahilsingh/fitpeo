@@ -72,7 +72,7 @@ const DoughnutChart = (props: DoughnutChartProps) => {
                             <Doughnut
                                 data={chartData}
                                 options={chartOptions}
-                                className='lg:w-[250px] w-full z-[2]'
+                                className='w-full z-[2]'
                             />
                             {props.content && (
                                 <div className="z-[1] flex items-center justify-center absolute w-full h-full top-0 left-0  bg-red-100s pointer-events-none">
@@ -96,20 +96,3 @@ const DoughnutChart = (props: DoughnutChartProps) => {
 }
 
 export default DoughnutChart
-
-
-
-// const sliceThickness = {
-//     id: "sliceThickness",
-//     beforeDraw(chart) {
-//         const datasetMeta = chart.getDatasetMeta(0);
-//         const dataPoint = datasetMeta.data[0];
-
-//         // Set the thickness of the slice
-//         // dataPoint.innerRadius = "80";
-//         // dataPoint.outerRadius = 100;
-
-//         // Update the chart
-//         // chart.update();
-//     },
-// }

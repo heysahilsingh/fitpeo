@@ -11,7 +11,8 @@ type ReportSummeryCardProps = {
     variance: string,
     variance_period: string | "this year" | "this quarter" | "this month" | "this week" | "today",
     variance_performance: "negative" | "positive",
-    iconColor?: string
+    iconColor?: string,
+    className?: string,
 }
 
 const ReportSummeryCard = (props: ReportSummeryCardProps) => {
@@ -21,7 +22,7 @@ const ReportSummeryCard = (props: ReportSummeryCardProps) => {
     const iconColor = props.iconColor || "#2563EB";
 
     return (
-        <div className="relative w-full lg:w-fit grow flex items-center gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-900">
+        <div className={`relative w-fit flex items-center max-lg:justify-center max-lg:flex-col gap-4 rounded-xl overflow-hidden px-5 py-6 transition cursor-pointer hover:shadow-lg bg-white dark:bg-zinc-900 ${props.className || ""}`}>
 
             {/* Icon */}
             <div className="relative rounded-full w-24 h-auto aspect-square">
@@ -37,10 +38,10 @@ const ReportSummeryCard = (props: ReportSummeryCardProps) => {
             </div>
 
             {/* Content */}
-            <div className="flex flex-col gap-1.5 dark:text-zinc-300">
+            <div className="flex flex-col max-lg:items-center gap-1.5 dark:text-zinc-300">
                 <p className='capitalize text-xs leading-none font-bold opacity-40'>{props.name || "default"}</p>
                 <p className="font-bold text-2xl leading-none">{`${userInfo.info.currency}${formatAmount(props.amount || 0, true)}`}</p>
-                <div className='text-xs leading-none font-bold flex gap-0.5 items-center'>
+                <div className='max-lg:flex-wrap max-lg:justify-center text-xs leading-none font-bold flex gap-0.5 items-center'>
                     {props.variance_performance === "positive"
                         ?
                         <IconArrowNarrowUp className='text-green-500' size={14} stroke={4} />

@@ -69,11 +69,11 @@ const ReportProductSell = (props: ReportProductSellProps) => {
     return (
         <div className={`report-product-sell flex flex-col rounded-xl bg-white dark:bg-zinc-900 ${props.className || ""}`}>
             {/* Heading, Search and Filter by period */}
-            <div className="px-4 py-6 lg:py-4 lg:px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4">
+            <div className="px-4 py-6 lg:py-4 lg:px-8 flex max-sm:flex-wrap lg:flex-nowrap items-center justify-between gap-4">
                 <div className={`w-full lg:w-fit grow ${themeStyle.H1_STYLE}`}>Product Sell</div>
 
                 <SearchInput
-                    showSearchIcon className="w-[20%] grow lg:grow-0 border-0 bg-zinc-100"
+                    showSearchIcon className="min-w-[210px] min-sm:max-w-[210px] grow lg:grow-0 border-0 bg-zinc-100"
                     searchCallback={handleProductSearch}
                     placeholder="Search product"
                 />
