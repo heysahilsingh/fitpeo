@@ -62,7 +62,7 @@ const DoughnutChart = (props: DoughnutChartProps) => {
     };
 
     return (
-        <div className="doughnut-chart relative flex items-center w-full">
+        <div className="doughnut-chart relative flex items-center justify-center w-full">
 
             {props.categoriesValue && props.categories && (
                 <>
